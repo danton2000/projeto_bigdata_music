@@ -5,7 +5,7 @@
 
 ## Utilizar API Spotify
 
-### Arquitetuto do Databricks
+### Arquitetura medalhão do Databricks
 
 - Catalog
   - Bronze (Dados brutos)
