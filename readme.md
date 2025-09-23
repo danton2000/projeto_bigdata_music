@@ -76,5 +76,8 @@ Quais gêneros e artistas estão em alta hoje.
 - Catalog
   - Bronze (Dados brutos)
   - Prata (Dados tratatos)
+    - vão ser duas bases
+      - arquivo da camanda broze somente com colunas("track","artist","year","Genre","Duration","Danceability","Popularity","Speechiness")
+      - base com as infomrações do Spotiy, como album, popularidade no Spotify, albuns
   - Gold (Dados para o consumo)
 
