@@ -1,0 +1,88 @@
+{
+  "datasets": [
+    {
+      "name": "95118723",
+      "displayName": "tracks_analytics",
+      "queryLines": [
+        "SELECT * FROM workspace.gold.tracks_analytics"
+      ],
+      "catalog": "workspace",
+      "schema": "gold"
+    }
+  ],
+  "pages": [
+    {
+      "name": "4a4dd977",
+      "displayName": "Dashboard 1",
+      "layout": [
+        {
+          "widget": {
+            "name": "49fb7a52",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "95118723",
+                  "fields": [
+                    {
+                      "name": "Genre",
+                      "expression": "`Genre`"
+                    },
+                    {
+                      "name": "avg(Danceability)",
+                      "expression": "AVG(`Danceability`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "Genre",
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  }
+                },
+                "y": {
+                  "fieldName": "avg(Danceability)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              },
+              "frame": {
+                "showDescription": true,
+                "title": "Principais gêneros por dançabilidade",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 1,
+            "y": 0,
+            "width": 4,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    },
+    {
+      "name": "906b3465",
+      "displayName": "Global Filters",
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
