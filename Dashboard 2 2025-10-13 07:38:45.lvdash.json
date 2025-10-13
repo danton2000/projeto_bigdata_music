@@ -1,70 +1,90 @@
 {
   "datasets": [
     {
-      "name": "95118723",
-      "displayName": "tracks_analytics",
+      "name": "d86552dd",
+      "displayName": "genres_summary",
       "queryLines": [
-        "SELECT * FROM workspace.gold.tracks_analytics"
-      ],
-      "catalog": "workspace",
-      "schema": "gold"
+        "SELECT * FROM workspace.gold.genres_summary"
+      ]
     }
   ],
   "pages": [
     {
-      "name": "4a4dd977",
-      "displayName": "Dashboard 1",
+      "name": "4549d37b",
+      "displayName": "Dashboard 2",
       "layout": [
         {
           "widget": {
-            "name": "49fb7a52",
+            "name": "64371e8f",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
-                  "datasetName": "95118723",
+                  "datasetName": "d86552dd",
                   "fields": [
                     {
-                      "name": "year",
-                      "expression": "`year`"
+                      "name": "Genre",
+                      "expression": "`Genre`"
                     },
                     {
-                      "name": "count(*)",
-                      "expression": "COUNT(`*`)"
+                      "name": "avg_danceability",
+                      "expression": "`avg_danceability`"
                     }
                   ],
-                  "disaggregated": false
+                  "disaggregated": true
                 }
               }
             ],
             "spec": {
               "version": 3,
-              "widgetType": "area",
+              "widgetType": "bar",
               "encodings": {
                 "x": {
-                  "fieldName": "year",
+                  "fieldName": "Genre",
                   "scale": {
-                    "type": "categorical"
+                    "type": "categorical",
+                    "categorySize": {
+                      "type": "number-of-categories",
+                      "number": 5
+                    },
+                    "sort": {
+                      "by": "natural-order"
+                    }
                   }
                 },
                 "y": {
-                  "fieldName": "count(*)",
-                  "scale": {
-                    "type": "quantitative"
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "avg_danceability"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative",
+                      "reverse": false
+                    },
+                    "axis": {
+                      "hideTitle": true,
+                      "hideLabels": false
+                    }
+                  },
+                  "secondary": {
+                    "fields": [],
+                    "scale": {
+                      "type": "quantitative"
+                    }
                   }
+                },
+                "label": {
+                  "show": false
                 }
               },
               "frame": {
-                "showDescription": true,
-                "title": "Painel - Musicas por anos",
-                "showTitle": true
+                "showTitle": true,
+                "title": "Painel - Top 5 Gereros por Dancabilidade"
               },
               "mark": {
                 "colors": [
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 3
-                  },
                   {
                     "themeColorType": "visualizationColors",
                     "position": 2
@@ -101,44 +121,24 @@
                     "themeColorType": "visualizationColors",
                     "position": 10
                   }
-                ]
+                ],
+                "layout": "stack"
               }
             }
           },
           "position": {
-            "x": 0,
+            "x": 1,
             "y": 0,
-            "width": 6,
-            "height": 8
+            "width": 5,
+            "height": 7
           }
         }
       ],
       "pageType": "PAGE_TYPE_CANVAS"
     },
     {
-      "name": "906b3465",
+      "name": "417c7b32",
       "displayName": "Global Filters",
-      "layout": [
-        {
-          "widget": {
-            "name": "fa310ec3",
-            "spec": {
-              "version": 2,
-              "widgetType": "filter-single-select",
-              "encodings": {},
-              "frame": {
-                "showTitle": true
-              }
-            }
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "width": 1,
-            "height": 2
-          }
-        }
-      ],
       "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
     }
   ],
