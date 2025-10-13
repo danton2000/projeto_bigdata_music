@@ -8,6 +8,22 @@
       ],
       "catalog": "workspace",
       "schema": "gold"
+    },
+    {
+      "name": "5a4cb788",
+      "displayName": "genres_summary",
+      "queryLines": [
+        "SELECT Genre, num_tracks\r\n",
+        "FROM workspace.gold.genres_summary\r\n",
+        "ORDER BY num_tracks DESC\r\n",
+        "LIMIT 5\r\n",
+        "\r\n",
+        "-- Pop\t1042\r\n",
+        "-- Metal\t571\r\n",
+        "-- Alt. Rock\t525\r\n",
+        "-- Rap\t494\r\n",
+        "-- Today\t462"
+      ]
     }
   ],
   "pages": [
@@ -140,11 +156,102 @@
         }
       ],
       "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    },
+    {
+      "name": "20511b7d",
+      "displayName": "Dashboard 2",
+      "layout": [
+        {
+          "widget": {
+            "name": "2cdb1ae2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5a4cb788",
+                  "fields": [
+                    {
+                      "name": "sum(num_tracks)",
+                      "expression": "SUM(`num_tracks`)"
+                    },
+                    {
+                      "name": "Genre",
+                      "expression": "`Genre`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(num_tracks)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "Genre",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "legend": {
+                    "position": "right"
+                  }
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Top 5 Gênero por quantidade de Músicas",
+                "showDescription": false
+              }
+            }
+          },
+          "position": {
+            "x": 1,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
     }
   ],
   "uiSettings": {
     "theme": {
-      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+      "canvasBackgroundColor": {
+        "light": "#FAFAFB",
+        "dark": "#1F272D"
+      },
+      "widgetBackgroundColor": {
+        "light": "#FFFFFF",
+        "dark": "#11171C"
+      },
+      "fontColor": {
+        "light": "#11171C",
+        "dark": "#E8ECF0"
+      },
+      "selectionColor": {
+        "light": "#2272B4",
+        "dark": "#8ACAFF"
+      },
+      "visualizationColors": [
+        "#077A9D",
+        "#FFAB00",
+        "#00A972",
+        "#FF3621",
+        "#8BCAE7",
+        "#AB4057",
+        "#99DDB4",
+        "#FCA4A1",
+        "#919191",
+        "#BF7080"
+      ],
+      "widgetHeaderAlignment": "LEFT"
     },
     "genieSpace": {
       "isEnabled": false
