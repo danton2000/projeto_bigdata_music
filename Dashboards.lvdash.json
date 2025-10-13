@@ -28,12 +28,98 @@
   ],
   "pages": [
     {
-      "name": "4a4dd977",
-      "displayName": "Dashboard 1",
+      "name": "906b3465",
+      "displayName": "Global Filters",
       "layout": [
         {
           "widget": {
-            "name": "49fb7a52",
+            "name": "fa310ec3",
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {},
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
+    },
+    {
+      "name": "20511b7d",
+      "displayName": "Dashboards",
+      "layout": [
+        {
+          "widget": {
+            "name": "2cdb1ae2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "5a4cb788",
+                  "fields": [
+                    {
+                      "name": "sum(num_tracks)",
+                      "expression": "SUM(`num_tracks`)"
+                    },
+                    {
+                      "name": "Genre",
+                      "expression": "`Genre`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(num_tracks)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "axis": {
+                    "title": "Total de Musicas"
+                  }
+                },
+                "color": {
+                  "fieldName": "Genre",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "Generos"
+                }
+              },
+              "frame": {
+                "showTitle": true,
+                "title": "Painel - Top 5 Gênero por quantidade de Músicas",
+                "showDescription": false
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "7a2da69a",
             "queries": [
               {
                 "name": "main_query",
@@ -45,8 +131,8 @@
                       "expression": "`year`"
                     },
                     {
-                      "name": "count(*)",
-                      "expression": "COUNT(`*`)"
+                      "name": "countdistinct(track_name)",
+                      "expression": "COUNT(DISTINCT `track_name`)"
                     }
                   ],
                   "disaggregated": false
@@ -61,17 +147,19 @@
                   "fieldName": "year",
                   "scale": {
                     "type": "categorical"
-                  }
+                  },
+                  "displayName": "Anos"
                 },
                 "y": {
-                  "fieldName": "count(*)",
+                  "fieldName": "countdistinct(track_name)",
                   "scale": {
                     "type": "quantitative"
-                  }
+                  },
+                  "displayName": "Quantidade de Musicas"
                 }
               },
               "frame": {
-                "showDescription": true,
+                "showDescription": false,
                 "title": "Painel - Musicas por anos",
                 "showTitle": true
               },
@@ -123,60 +211,27 @@
           },
           "position": {
             "x": 0,
-            "y": 0,
+            "y": 6,
             "width": 6,
             "height": 8
           }
-        }
-      ],
-      "pageType": "PAGE_TYPE_CANVAS"
-    },
-    {
-      "name": "906b3465",
-      "displayName": "Global Filters",
-      "layout": [
+        },
         {
           "widget": {
-            "name": "fa310ec3",
-            "spec": {
-              "version": 2,
-              "widgetType": "filter-single-select",
-              "encodings": {},
-              "frame": {
-                "showTitle": true
-              }
-            }
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "width": 1,
-            "height": 2
-          }
-        }
-      ],
-      "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
-    },
-    {
-      "name": "20511b7d",
-      "displayName": "Dashboard 2",
-      "layout": [
-        {
-          "widget": {
-            "name": "2cdb1ae2",
+            "name": "2d192a9d",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
-                  "datasetName": "5a4cb788",
+                  "datasetName": "95118723",
                   "fields": [
                     {
-                      "name": "sum(num_tracks)",
-                      "expression": "SUM(`num_tracks`)"
+                      "name": "artist_name",
+                      "expression": "`artist_name`"
                     },
                     {
-                      "name": "Genre",
-                      "expression": "`Genre`"
+                      "name": "count(is_hit)",
+                      "expression": "COUNT(`is_hit`)"
                     }
                   ],
                   "disaggregated": false
@@ -185,33 +240,42 @@
             ],
             "spec": {
               "version": 3,
-              "widgetType": "pie",
+              "widgetType": "bar",
               "encodings": {
-                "angle": {
-                  "fieldName": "sum(num_tracks)",
+                "x": {
+                  "fieldName": "artist_name",
                   "scale": {
-                    "type": "quantitative"
+                    "type": "categorical",
+                    "categorySize": {
+                      "type": "number-of-categories",
+                      "number": 10
+                    },
+                    "sort": {
+                      "by": "y-reversed"
+                    }
+                  },
+                  "axis": {
+                    "title": "Nome dos artistas"
                   }
                 },
-                "color": {
-                  "fieldName": "Genre",
+                "y": {
+                  "fieldName": "count(is_hit)",
                   "scale": {
-                    "type": "categorical"
+                    "type": "quantitative"
                   },
-                  "legend": {
-                    "position": "right"
+                  "axis": {
+                    "title": "Hit"
                   }
                 }
               },
               "frame": {
-                "showTitle": true,
-                "title": "Top 5 Gênero por quantidade de Músicas",
-                "showDescription": false
+                "title": "Painel - Artistas por Hit de Musicas",
+                "showTitle": true
               }
             }
           },
           "position": {
-            "x": 1,
+            "x": 3,
             "y": 0,
             "width": 3,
             "height": 6
