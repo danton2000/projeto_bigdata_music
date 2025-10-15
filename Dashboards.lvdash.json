@@ -16,13 +16,7 @@
         "SELECT Genre, num_tracks\r\n",
         "FROM workspace.gold.genres_summary\r\n",
         "ORDER BY num_tracks DESC\r\n",
-        "LIMIT 5\r\n",
-        "\r\n",
-        "-- Pop\t1042\r\n",
-        "-- Metal\t571\r\n",
-        "-- Alt. Rock\t525\r\n",
-        "-- Rap\t494\r\n",
-        "-- Today\t462"
+        "LIMIT 5"
       ]
     }
   ],
@@ -30,27 +24,6 @@
     {
       "name": "906b3465",
       "displayName": "Global Filters",
-      "layout": [
-        {
-          "widget": {
-            "name": "fa310ec3",
-            "spec": {
-              "version": 2,
-              "widgetType": "filter-single-select",
-              "encodings": {},
-              "frame": {
-                "showTitle": true
-              }
-            }
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "width": 1,
-            "height": 2
-          }
-        }
-      ],
       "pageType": "PAGE_TYPE_GLOBAL_FILTERS"
     },
     {
