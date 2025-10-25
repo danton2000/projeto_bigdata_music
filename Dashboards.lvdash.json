@@ -100,12 +100,16 @@
                   "datasetName": "95118723",
                   "fields": [
                     {
-                      "name": "year",
-                      "expression": "`year`"
+                      "name": "Genre",
+                      "expression": "`Genre`"
                     },
                     {
-                      "name": "countdistinct(track_name)",
-                      "expression": "COUNT(DISTINCT `track_name`)"
+                      "name": "median(api_popularity)",
+                      "expression": "MEDIAN(`api_popularity`)"
+                    },
+                    {
+                      "name": "median(csv_popularity)",
+                      "expression": "MEDIAN(`csv_popularity`)"
                     }
                   ],
                   "disaggregated": false
@@ -117,50 +121,53 @@
               "widgetType": "area",
               "encodings": {
                 "x": {
-                  "fieldName": "year",
-                  "scale": {
-                    "type": "categorical"
+                  "fieldName": "Genre",
+                  "axis": {
+                    "title": "Generos"
                   },
-                  "displayName": "Anos"
+                  "scale": {
+                    "type": "categorical",
+                    "sort": {
+                      "by": "natural-order"
+                    }
+                  }
                 },
                 "y": {
-                  "fieldName": "countdistinct(track_name)",
                   "scale": {
-                    "type": "quantitative"
+                    "type": "quantitative",
+                    "reverse": false
                   },
-                  "displayName": "Quantidade de Musicas"
+                  "fields": [
+                    {
+                      "fieldName": "median(api_popularity)"
+                    },
+                    {
+                      "fieldName": "median(csv_popularity)"
+                    }
+                  ],
+                  "axis": {
+                    "title": "Popularidade (Api) x Popularidade(Csv)"
+                  }
+                },
+                "color": {
+                  "legend": {
+                    "position": "bottom",
+                    "title": ""
+                  }
+                },
+                "label": {
+                  "show": false
                 }
               },
               "frame": {
                 "showDescription": false,
-                "title": "Painel - Musicas por anos",
+                "title": "Painel -  Mostrando a Populariade das Masicas pelo Genero",
                 "showTitle": true
               },
               "mark": {
                 "colors": [
                   {
-                    "themeColorType": "visualizationColors",
-                    "position": 3
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 2
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 3
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 4
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 5
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 6
+                    "themeColorType": "selectionColor"
                   },
                   {
                     "themeColorType": "visualizationColors",
@@ -177,8 +184,21 @@
                   {
                     "themeColorType": "visualizationColors",
                     "position": 10
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
                   }
-                ]
+                ],
+                "layout": "stack"
               }
             }
           },
@@ -203,8 +223,12 @@
                       "expression": "`artist_name`"
                     },
                     {
-                      "name": "count(is_hit)",
-                      "expression": "COUNT(`is_hit`)"
+                      "name": "median(api_popularity)",
+                      "expression": "MEDIAN(`api_popularity`)"
+                    },
+                    {
+                      "name": "median(csv_popularity)",
+                      "expression": "MEDIAN(`csv_popularity`)"
                     }
                   ],
                   "disaggregated": false
@@ -228,22 +252,37 @@
                     }
                   },
                   "axis": {
-                    "title": "Nome dos artistas"
+                    "title": "Artistas"
                   }
                 },
                 "y": {
-                  "fieldName": "count(is_hit)",
+                  "axis": {
+                    "title": "Popularidade",
+                    "hideTitle": false
+                  },
                   "scale": {
                     "type": "quantitative"
                   },
-                  "axis": {
-                    "title": "Hit"
-                  }
+                  "fields": [
+                    {
+                      "fieldName": "median(api_popularity)"
+                    },
+                    {
+                      "fieldName": "median(csv_popularity)"
+                    }
+                  ]
+                },
+                "label": {
+                  "show": true
                 }
               },
               "frame": {
-                "title": "Painel - Artistas por Hit de Musicas",
+                "headerAlignment": "center",
+                "title": "Painel - Mediana da popularidade dos Artistas",
                 "showTitle": true
+              },
+              "mark": {
+                "layout": "group"
               }
             }
           },
