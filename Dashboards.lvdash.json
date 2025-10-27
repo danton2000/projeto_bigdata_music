@@ -63,12 +63,29 @@
                   },
                   "axis": {
                     "title": "Total de Musicas"
+                  },
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "none",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "hideGroupSeparator": true
                   }
                 },
                 "color": {
                   "fieldName": "Genre",
                   "scale": {
-                    "type": "categorical"
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "Outros",
+                        "color": {
+                          "themeColorType": "canvasBackgroundColor"
+                        }
+                      }
+                    ]
                   },
                   "legend": {
                     "position": "right"
@@ -133,41 +150,73 @@
                   }
                 },
                 "y": {
-                  "scale": {
-                    "type": "quantitative",
-                    "reverse": false
-                  },
-                  "fields": [
-                    {
-                      "fieldName": "median(api_popularity)"
+                  "primary": {
+                    "fields": [
+                      {
+                        "fieldName": "median(api_popularity)"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative",
+                      "reverse": false,
+                      "domain": {
+                        "min": 0
+                      }
                     },
-                    {
-                      "fieldName": "median(csv_popularity)"
+                    "axis": {
+                      "hideGrid": false,
+                      "hideLabels": false,
+                      "title": "Mediana Popularidade API"
                     }
-                  ],
-                  "axis": {
-                    "title": "Popularidade (Api) x Popularidade(Csv)"
+                  },
+                  "secondary": {
+                    "fields": [
+                      {
+                        "fieldName": "median(csv_popularity)"
+                      }
+                    ],
+                    "scale": {
+                      "type": "quantitative"
+                    },
+                    "axis": {
+                      "title": "Mediana Popularidade CSV"
+                    }
                   }
                 },
                 "color": {
                   "legend": {
-                    "position": "bottom",
-                    "title": ""
+                    "hide": false,
+                    "position": "bottom"
                   }
-                },
-                "label": {
-                  "show": false
                 }
               },
               "frame": {
                 "showDescription": false,
-                "title": "Painel -  Mostrando a Populariade das Masicas pelo Genero",
+                "title": "Painel -  Mostrando a Populariade das Musicas pelo Genero",
                 "showTitle": true
               },
               "mark": {
                 "colors": [
                   {
-                    "themeColorType": "selectionColor"
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  "#02ACDF",
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
                   },
                   {
                     "themeColorType": "visualizationColors",
@@ -176,18 +225,6 @@
                   {
                     "themeColorType": "visualizationColors",
                     "position": 8
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 9
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 10
-                  },
-                  {
-                    "themeColorType": "visualizationColors",
-                    "position": 10
                   },
                   {
                     "themeColorType": "visualizationColors",
