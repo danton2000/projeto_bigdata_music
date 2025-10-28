@@ -18,6 +18,20 @@
         "ORDER BY num_tracks DESC\r\n",
         "LIMIT 5"
       ]
+    },
+    {
+      "name": "581c7bc4",
+      "displayName": "jobs_information(SQL)",
+      "queryLines": [
+        "SELECT\r\n",
+        "job.job_id,\r\n",
+        "job.name,\r\n",
+        "count(*) num_execucoes,\r\n",
+        "max(job.change_time)\r\n",
+        "FROM system.lakeflow.jobs job\r\n",
+        "group by all\r\n",
+        "order by max(job.change_time) desc;"
+      ]
     }
   ],
   "pages": [
@@ -102,7 +116,7 @@
           },
           "position": {
             "x": 0,
-            "y": 0,
+            "y": 3,
             "width": 3,
             "height": 6
           }
@@ -177,16 +191,15 @@
                     ],
                     "scale": {
                       "type": "quantitative"
-                    },
-                    "axis": {
-                      "title": "Mediana Popularidade CSV"
                     }
                   }
                 },
                 "color": {
                   "legend": {
                     "hide": false,
-                    "position": "bottom"
+                    "title": "",
+                    "hideTitle": true,
+                    "position": "top"
                   }
                 }
               },
@@ -241,7 +254,7 @@
           },
           "position": {
             "x": 0,
-            "y": 6,
+            "y": 9,
             "width": 6,
             "height": 8
           }
@@ -325,9 +338,185 @@
           },
           "position": {
             "x": 3,
-            "y": 0,
+            "y": 3,
             "width": 3,
             "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "8c9e2b97",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "581c7bc4",
+                  "fields": [
+                    {
+                      "name": "name",
+                      "expression": "`name`"
+                    },
+                    {
+                      "name": "num_execucoes",
+                      "expression": "`num_execucoes`"
+                    },
+                    {
+                      "name": "max(change_time)",
+                      "expression": "`max(change_time)`"
+                    }
+                  ],
+                  "filters": [
+                    {
+                      "expression": "`name` IN ('Job Carga Arquivo - Bronze e Silver', 'Job Carga Spotify - Bronze, Silver e Gold')"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "name",
+                    "booleanValues": [
+                      "false",
+                      "true"
+                    ],
+                    "imageUrlTemplate": "{{ @ }}",
+                    "imageTitleTemplate": "{{ @ }}",
+                    "imageWidth": "",
+                    "imageHeight": "",
+                    "linkUrlTemplate": "{{ @ }}",
+                    "linkTextTemplate": "{{ @ }}",
+                    "linkTitleTemplate": "{{ @ }}",
+                    "linkOpenInNewTab": true,
+                    "type": "string",
+                    "displayAs": "string",
+                    "visible": true,
+                    "order": 100001,
+                    "title": "Nome do Job",
+                    "allowSearch": false,
+                    "alignContent": "left",
+                    "allowHTML": false,
+                    "highlightLinks": false,
+                    "useMonospaceFont": false,
+                    "preserveWhitespace": false,
+                    "cellFormat": {
+                      "default": {
+                        "foregroundColor": null
+                      },
+                      "rules": []
+                    }
+                  },
+                  {
+                    "fieldName": "num_execucoes",
+                    "numberFormat": "0",
+                    "booleanValues": [
+                      "false",
+                      "true"
+                    ],
+                    "imageUrlTemplate": "{{ @ }}",
+                    "imageTitleTemplate": "{{ @ }}",
+                    "imageWidth": "",
+                    "imageHeight": "",
+                    "linkUrlTemplate": "{{ @ }}",
+                    "linkTextTemplate": "{{ @ }}",
+                    "linkTitleTemplate": "{{ @ }}",
+                    "linkOpenInNewTab": true,
+                    "type": "integer",
+                    "displayAs": "number",
+                    "visible": true,
+                    "order": 100002,
+                    "title": "Numero de Execuções",
+                    "allowSearch": false,
+                    "alignContent": "left",
+                    "allowHTML": false,
+                    "highlightLinks": false,
+                    "useMonospaceFont": false,
+                    "preserveWhitespace": false
+                  },
+                  {
+                    "fieldName": "max(change_time)",
+                    "dateTimeFormat": "DD/MM/YYYY HH:mm:ss",
+                    "booleanValues": [
+                      "false",
+                      "true"
+                    ],
+                    "imageUrlTemplate": "{{ @ }}",
+                    "imageTitleTemplate": "{{ @ }}",
+                    "imageWidth": "",
+                    "imageHeight": "",
+                    "linkUrlTemplate": "{{ @ }}",
+                    "linkTextTemplate": "{{ @ }}",
+                    "linkTitleTemplate": "{{ @ }}",
+                    "linkOpenInNewTab": true,
+                    "type": "datetime",
+                    "displayAs": "datetime",
+                    "visible": true,
+                    "order": 100003,
+                    "title": "Ultma Execução",
+                    "allowSearch": false,
+                    "alignContent": "left",
+                    "allowHTML": false,
+                    "highlightLinks": false,
+                    "useMonospaceFont": false,
+                    "preserveWhitespace": false,
+                    "cellFormat": {
+                      "default": {
+                        "foregroundColor": null
+                      },
+                      "rules": []
+                    }
+                  }
+                ]
+              },
+              "invisibleColumns": [
+                {
+                  "booleanValues": [
+                    "false",
+                    "true"
+                  ],
+                  "imageUrlTemplate": "{{ @ }}",
+                  "imageTitleTemplate": "{{ @ }}",
+                  "imageWidth": "",
+                  "imageHeight": "",
+                  "linkUrlTemplate": "{{ @ }}",
+                  "linkTextTemplate": "{{ @ }}",
+                  "linkTitleTemplate": "{{ @ }}",
+                  "linkOpenInNewTab": true,
+                  "name": "job_id",
+                  "type": "string",
+                  "displayAs": "string",
+                  "order": 100000,
+                  "title": "job_id",
+                  "allowSearch": false,
+                  "alignContent": "left",
+                  "allowHTML": false,
+                  "highlightLinks": false,
+                  "useMonospaceFont": false,
+                  "preserveWhitespace": false
+                }
+              ],
+              "allowHTMLByDefault": false,
+              "itemsPerPage": 5,
+              "paginationSize": "default",
+              "condensed": false,
+              "withRowNumber": false,
+              "firstNFrozenColumns": 0,
+              "frame": {
+                "showTitle": true,
+                "title": "Painel - Gestão dos Jobs"
+              }
+            }
+          },
+          "position": {
+            "x": 1,
+            "y": 0,
+            "width": 4,
+            "height": 3
           }
         }
       ],
